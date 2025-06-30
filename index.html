@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveEase | Location de véhicules premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="dark-mode">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo" onclick="showPage('home-page')">
+                <i class="fas fa-car"></i>
+                <span>Drive</span>Ease
+            </a>
+            
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showPage('home-page')" class="active">Accueil</a></li>
+                    <li><a href="#" onclick="showPage('vehicles-page')">Véhicules</a></li>
+                    <li><a href="#" onclick="showPage('pricing-page')">Tarifs</a></li>
+                    <li><a href="#" onclick="showPage('about-page')">À propos</a></li>
+                    <li><a href="#" onclick="showPage('contact-page')">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline" onclick="showPage('login-page')">Connexion</a>
+                <a href="#" class="btn" onclick="showPage('register-page')">Inscription</a>
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1>Véhicules <span>premium</span> pour votre prochain voyage</h1>
+                    <p>Expérimentez le luxe, le confort et la fiabilité avec notre flotte premium de véhicules. Options de location flexibles adaptées à vos besoins.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn" onclick="showPage('vehicles-page')">Explorer la flotte</a>
+                        <a href="#" class="btn btn-outline" onclick="showPage('pricing-page')">Voir les tarifs</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" alt="Voiture de luxe" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Form -->
+        <section>
+            <div class="container">
+                <div class="search-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="pickup-location">Lieu de prise en charge</label>
+                            <select id="pickup-location">
+                                <option value="">Sélectionnez un lieu</option>
+                                <option value="yaounde">Yaoundé</option>
+                                <option value="douala">Douala</option>
+                                <option value="bafoussam">Bafoussam</option>
+                                <option value="garoua">Garoua</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dropoff-location">Lieu de restitution</label>
+                            <select id="dropoff-location">
+                                <option value="">Même que le lieu de prise</option>
+                                <option value="yaounde">Yaoundé</option>
+                                <option value="douala">Douala</option>
+                                <option value="bafoussam">Bafoussam</option>
+                                <option value="garoua">Garoua</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pickup-date">Date de prise en charge</label>
+                            <input type="date" id="pickup-date">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dropoff-date">Date de restitution</label>
+                            <input type="date" id="dropoff-date">
+                        </div>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button class="btn">Rechercher des véhicules</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Pourquoi choisir DriveEase</h2>
+                    <p>Nous offrons la meilleure expérience de location avec des véhicules premium et un service exceptionnel</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>Large sélection de véhicules</h3>
+                        <p>Des voitures économiques aux SUV luxueux et aux voitures de sport premium</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-tag"></i>
+                        </div>
+                        <h3>Meilleur prix garanti</h3>
+                        <p>Nous proposons des prix compétitifs sans frais cachés</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Assurance complète</h3>
+                        <p>Protection complète pour votre tranquillité d'esprit</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Support client 24/7</h3>
+                        <p>Notre équipe est toujours prête à vous aider</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vehicles Section -->
+        <section class="section" id="vehicles">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Véhicules en vedette</h2>
+                    <p>Découvrez notre flotte premium de véhicules pour votre prochaine aventure</p>
+                </div>
+                
+                <div class="vehicles-grid">
+                    <!-- Vehicle 1 -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <div class="vehicle-badge">Populaire</div>
+                            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" alt="BMW Série 5" loading="lazy">
+                        </div>
+                        <div class="vehicle-details">
+                            <div class="vehicle-header">
+                                <div class="vehicle-title">
+                                    <h3>BMW Série 5</h3>
+                                    <p>Berline de luxe</p>
+                                </div>
+                                <div class="vehicle-price">
+                                    57,850 FCFA<span>/jour</span>
+                                </div>
+                            </div>
+                            
+                            <div class="vehicle-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-car"></i>
+                                    <span>Berline</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-gas-pump"></i>
+                                    <span>Essence</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Automatique</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-user-friends"></i>
+                                    <span>5 places</span>
+                                </div>
+                            </div>
+                            
+                            <div class="vehicle-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(128 avis)</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline" style="width: 100%;" onclick="showVehicleDetails(0)">Voir détails</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Vehicle 2 -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <div class="vehicle-badge">Nouveau</div>
+                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" alt="Range Rover" loading="lazy">
+                        </div>
+                        <div class="vehicle-details">
+                            <div class="vehicle-header">
+                                <div class="vehicle-title">
+                                    <h3>Range Rover Sport</h3>
+                                    <p>SUV Premium</p>
+                                </div>
+                                <div class="vehicle-price">
+                                    83,850 FCFA<span>/jour</span>
+                                </div>
+                            </div>
+                            
+                            <div class="vehicle-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-car"></i>
+                                    <span>SUV</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-gas-pump"></i>
+                                    <span>Diesel</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Automatique</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-user-friends"></i>
+                                    <span>7 places</span>
+                                </div>
+                            </div>
+                            
+                            <div class="vehicle-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(94 avis)</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline" style="width: 100%;" onclick="showVehicleDetails(1)">Voir détails</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Vehicle 3 -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" alt="Mercedes AMG" loading="lazy">
+                        </div>
+                        <div class="vehicle-details">
+                            <div class="vehicle-header">
+                                <div class="vehicle-title">
+                                    <h3>Mercedes AMG GT</h3>
+                                    <p>Voiture de sport</p>
+                                </div>
+                                <div class="vehicle-price">
+                                    129,350 FCFA<span>/jour</span>
+                                </div>
+                            </div>
+                            
+                            <div class="vehicle-specs">
+                                <div class="spec-item">
+                                    <i class="fas fa-car"></i>
+                                    <span>Coupé</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-gas-pump"></i>
+                                    <span>Essence</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Automatique</span>
+                                </div>
+                                <div class="spec-item">
+                                    <i class="fas fa-user-friends"></i>
+                                    <span>2 places</span>
+                                </div>
+                            </div>
+                            
+                            <div class="vehicle-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(67 avis)</span>
+                            </div>
+                            
+                            <a href="#" class="btn btn-outline" style="width: 100%;" onclick="showVehicleDetails(2)">Voir détails</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 60px;">
+                    <a href="#" class="btn" onclick="showPage('vehicles-page')">Voir tous les véhicules</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Ce que disent nos clients</h2>
+                    <p>Ne croyez pas seulement nos mots - écoutez nos clients satisfaits</p>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Jean Dupont" loading="lazy">
+                            </div>
+                            <div class="testimonial-info">
+                                <h4>Jean Dupont</h4>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-quote">
+                            <p>Le processus de location était parfait. La BMW Série 5 que j'ai louée était en parfait état et a rendu mon voyage d'affaires beaucoup plus confortable. Je vais certainement utiliser DriveEase à nouveau !</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie Martin" loading="lazy">
+                            </div>
+                            <div class="testimonial-info">
+                                <h4>Sophie Martin</h4>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-quote">
+                            <p>J'ai loué un Range Rover pour nos vacances en famille et c'était parfait ! Spacieux, confortable et le personnel était incroyablement serviable. Le système de réservation en ligne a tout rendu si facile.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Thomas Bernard" loading="lazy">
+                            </div>
+                            <div class="testimonial-info">
+                                <h4>Thomas Bernard</h4>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-quote">
+                            <p>En tant que voyageur fréquent, j'ai utilisé de nombreux services de location. DriveEase se distingue par sa flotte premium et son excellent service client. La Mercedes AMG était un vrai plaisir à conduire !</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta">
+            <div class="container">
+                <h2>Prêt pour votre prochaine aventure ?</h2>
+                <p>Rejoignez des milliers de clients satisfaits qui ont vécu l'expérience de location premium avec DriveEase</p>
+                <a href="#" class="btn" onclick="showPage('vehicles-page')">Réserver maintenant</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Pricing Page -->
+    <div id="pricing-page" class="page">
+        <section class="section pricing">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Plans tarifaires flexibles</h2>
+                    <p>Choisissez le plan parfait qui correspond à vos besoins et à votre budget</p>
+                </div>
+                
+                <div class="pricing-grid">
+                    <!-- Economy Plan -->
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">Économique</h3>
+                            <div class="pricing-price">25,350 FCFA<span>/jour</span></div>
+                            <p class="pricing-period">Idéal pour les courts trajets et les voyageurs économes</p>
+                        </div>
+                        
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Véhicules de classe économique</li>
+                            <li><i class="fas fa-check"></i> Jusqu'à 200 km par jour</li>
+                            <li><i class="fas fa-check"></i> Assurance de base</li>
+                            <li><i class="fas fa-check"></i> Assistance routière 24/7</li>
+                            <li><i class="fas fa-times" style="color: var(--danger)"></i> Annulation gratuite</li>
+                            <li><i class="fas fa-times" style="color: var(--danger)"></i> Prise en charge à l'aéroport</li>
+                        </ul>
+                        
+                        <a href="#" class="btn btn-outline" style="width: 100%;">Sélectionner</a>
+                    </div>
+                    
+                    <!-- Standard Plan -->
+                    <div class="pricing-card popular">
+                        <div class="popular-tag">POPULAIRE</div>
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">Standard</h3>
+                            <div class="pricing-price">44,850 FCFA<span>/jour</span></div>
+                            <p class="pricing-period">Meilleur rapport qualité-prix pour les voyages d'affaires et en famille</p>
+                        </div>
+                        
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Berlines et SUV de taille moyenne</li>
+                            <li><i class="fas fa-check"></i> Kilométrage illimité</li>
+                            <li><i class="fas fa-check"></i> Assurance complète</li>
+                            <li><i class="fas fa-check"></i> Support premium 24/7</li>
+                            <li><i class="fas fa-check"></i> Annulation gratuite</li>
+                            <li><i class="fas fa-times" style="color: var(--danger)"></i> Prise en charge à l'aéroport</li>
+                        </ul>
+                        
+                        <a href="#" class="btn" style="width: 100%;">Sélectionner</a>
+                    </div>
+                    
+                    <!-- Premium Plan -->
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">Premium</h3>
+                            <div class="pricing-price">83,850 FCFA<span>/jour</span></div>
+                            <p class="pricing-period">Expérience de luxe pour les occasions spéciales</p>
+                        </div>
+                        
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Véhicules et SUV de luxe</li>
+                            <li><i class="fas fa-check"></i> Kilométrage illimité</li>
+                            <li><i class="fas fa-check"></i> Assurance premium</li>
+                            <li><i class="fas fa-check"></i> Service concierge dédié</li>
+                            <li><i class="fas fa-check"></i> Annulation gratuite</li>
+                            <li><i class="fas fa-check"></i> Prise en charge et livraison à l'aéroport</li>
+                        </ul>
+                        
+                        <a href="#" class="btn btn-outline" style="width: 100%;">Sélectionner</a>
+                    </div>
+                </div>
+                
+                <div class="section-title" style="margin-top: 100px;">
+                    <h2>Avantages des membres</h2>
+                    <p>Rejoignez notre programme de fidélité pour des avantages exclusifs et des réductions</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-percent"></i>
+                        </div>
+                        <h3>Réductions exclusives</h3>
+                        <p>Économisez 10-20% sur toutes les locations en tant que membre</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Mises à niveau gratuites</h3>
+                        <p>Bénéficiez de mises à niveau de véhicules gratuites selon disponibilité</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-flag-checkered"></i>
+                        </div>
+                        <h3>Service prioritaire</h3>
+                        <p>Passez devant la file d'attente avec un enregistrement et un service prioritaires</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3>Points de récompense</h3>
+                        <p>Gagnez des points à chaque location échangeables contre des jours gratuits</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about-page" class="page">
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>À propos de DriveEase</h2>
+                    <p>Votre partenaire de confiance pour la location de véhicules premium depuis 2010</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" alt="Flotte DriveEase" loading="lazy">
+                    </div>
+                    
+                    <div class="about-text">
+                        <h2>Notre parcours</h2>
+                        <p>Fondée en 2010, DriveEase a commencé avec une mission simple : transformer l'expérience de location de voiture. Ce qui a commencé comme une petite flotte de 10 véhicules est devenu un service premium avec plus de 500 véhicules dans 25 emplacements à travers le pays.</p>
+                        
+                        <p>Notre engagement envers la qualité, le service client et l'innovation a fait de nous le choix préféré des voyageurs d'affaires, des familles et des passionnés de voitures de luxe.</p>
+                        
+                        <h3 style="margin-top: 40px;">Notre mission</h3>
+                        <p>Fournir des expériences de location de véhicules exceptionnelles grâce à des voitures de qualité premium, un service client exceptionnel et des solutions technologiques innovantes qui rendent la location d'une voiture facile et agréable.</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">13+</div>
+                                <div class="stat-label">Ans d'expérience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">500+</div>
+                                <div class="stat-label">Véhicules en flotte</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">50k+</div>
+                                <div class="stat-label">Clients satisfaits</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Rencontrez notre équipe dirigeante</h2>
+                    <p>Les professionnels expérimentés qui pilotent notre succès</p>
+                </div>
+                
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="/assets/images/img 3.png" alt="Japhet Oyie" loading="lazy">
+                        </div>
+                        <div class="team-details">
+                            <h3 class="team-name">Japhet Oyie</h3>
+                            <div class="team-position">PDG & Fondateur</div>
+                            <p>Avec plus de 20 ans dans l'industrie automobile, la vision de Japhet dirige notre entreprise vers l'avant.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="/assets/images/img1.jpg" alt="Frederic Ela" loading="lazy">
+                        </div>
+                        <div class="team-details">
+                            <h3 class="team-name">Frederic Ela</h3>
+                            <div class="team-position">Directeur des opérations</div>
+                            <p>Frederic assure le bon fonctionnement de notre flotte dans tous nos emplacements avec une précision militaire.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="/assets/images/img 4.png" alt="Owen Saha" loading="lazy">
+                        </div>
+                        <div class="team-details">
+                            <h3 class="team-name">Owen Saha</h3>
+                            <div class="team-position">Directeur technologique</div>
+                            <p>Owen dirige notre transformation numérique, créant des expériences de réservation transparentes.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="/assets/images/img2.png" alt="Torres Nguepi" loading="lazy">
+                        </div>
+                        <div class="team-details">
+                            <h3 class="team-name">Torres Nguepi</h3>
+                            <div class="team-position">Expérience client</div>
+                            <p>Torres et son équipe veillent à ce que chaque interaction client dépasse les attentes.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact-page" class="page">
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contactez-nous</h2>
+                    <p>Nous sommes là pour répondre à toutes vos questions</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>Informations de contact</h2>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Notre adresse</h4>
+                                    <p>123 Avenue des Cocotiers, Yaoundé, Cameroun</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Téléphone</h4>
+                                    <p>+237 672 36 36 88</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>japhetoyie@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Horaires d'ouverture</h4>
+                                    <p>Lundi - Samedi: 8h00 - 20h00</p>
+                                    <p>Dimanche: 9h00 - 17h00</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>Suivez-nous</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h2>Envoyez-nous un message</h2>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Nom complet</label>
+                                <input type="text" id="name" placeholder="Entrez votre nom">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Adresse email</label>
+                                <input type="email" id="email" placeholder="Entrez votre email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="tel" id="phone" placeholder="Entrez votre numéro">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Sujet</label>
+                                <input type="text" id="subject" placeholder="Objet de votre message">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" placeholder="Comment pouvons-nous vous aider ?"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn" style="width: 100%;">Envoyer</button>
+                        </form>
+                    </div>
+                    
+                    <div class="map-container">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Vehicles Page -->
+    <div id="vehicles-page" class="page">
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Notre flotte complète</h2>
+                    <p>Découvrez tous nos véhicules premium disponibles</p>
+                </div>
+
+                <!-- Filtres -->
+                <div class="vehicle-filters">
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label for="price-filter">Prix maximum (FCFA/jour)</label>
+                            <input type="range" id="price-filter" min="0" max="300000" value="300000">
+                            <div class="price-value" id="priceValue">300,000 FCFA</div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="type-filter">Type de véhicule</label>
+                            <select id="type-filter">
+                                <option value="all">Tous les types</option>
+                                <option value="sedan">Berline</option>
+                                <option value="suv">SUV</option>
+                                <option value="sport">Sport</option>
+                                <option value="economy">Économique</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="fuel-filter">Carburant</label>
+                            <select id="fuel-filter">
+                                <option value="all">Tous</option>
+                                <option value="essence">Essence</option>
+                                <option value="diesel">Diesel</option>
+                                <option value="hybrid">Hybride</option>
+                                <option value="electric">Électrique</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="transmission-filter">Transmission</label>
+                            <select id="transmission-filter">
+                                <option value="all">Toutes</option>
+                                <option value="automatic">Automatique</option>
+                                <option value="manual">Manuelle</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-buttons">
+                        <button class="btn btn-outline active" data-filter="all">Tous</button>
+                        <button class="btn btn-outline" data-filter="sedan">Berlines</button>
+                        <button class="btn btn-outline" data-filter="suv">SUV</button>
+                        <button class="btn btn-outline" data-filter="sport">Sport</button>
+                        <button class="btn btn-outline" data-filter="economy">Économique</button>
+                    </div>
+                </div>
+
+                <div class="vehicles-grid">
+                    <!-- Les véhicules seront chargés dynamiquement ici -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page">
+        <section class="section" style="max-width: 500px; margin: 0 auto;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Connexion</h2>
+                    <p>Accédez à votre compte DriveEase</p>
+                </div>
+                
+                <div class="login-form" style="background: var(--card-bg); border-radius: var(--rounded); padding: 40px; box-shadow: var(--shadow);">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" placeholder="Votre adresse email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="login-password">Mot de passe</label>
+                            <input type="password" id="login-password" placeholder="Votre mot de passe" required>
+                        </div>
+                        
+                        <div class="form-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                            <div>
+                                <input type="checkbox" id="remember">
+                                <label for="remember" style="display: inline; margin-left: 8px;">Se souvenir de moi</label>
+                            </div>
+                            <a href="#" style="color: var(--primary); text-decoration: none;">Mot de passe oublié ?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Se connecter</button>
+                        
+                        <div style="text-align: center; margin-top: 25px;">
+                            <p>Vous n'avez pas de compte ? <a href="#" onclick="showPage('register-page')" style="color: var(--primary); text-decoration: none; font-weight: 500;">S'inscrire</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Register Page -->
+    <div id="register-page" class="page">
+        <section class="section" style="max-width: 500px; margin: 0 auto;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Créer un compte</h2>
+                    <p>Rejoignez notre communauté de conducteurs</p>
+                </div>
+                
+                <div class="register-form" style="background: var(--card-bg); border-radius: var(--rounded); padding: 40px; box-shadow: var(--shadow);">
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="register-name">Nom complet</label>
+                            <input type="text" id="register-name" placeholder="Votre nom complet" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" placeholder="Votre adresse email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-phone">Téléphone</label>
+                            <input type="tel" id="register-phone" placeholder="Votre numéro de téléphone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-password">Mot de passe</label>
+                            <input type="password" id="register-password" placeholder="Créez un mot de passe" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-confirm">Confirmer le mot de passe</label>
+                            <input type="password" id="register-confirm" placeholder="Confirmez votre mot de passe" required>
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 20px;">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms" style="display: inline; margin-left: 8px;">J'accepte les <a href="#" style="color: var(--primary); text-decoration: none;">conditions d'utilisation</a> et la <a href="#" style="color: var(--primary); text-decoration: none;">politique de confidentialité</a></label>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">S'inscrire</button>
+                        
+                        <div style="text-align: center; margin-top: 25px;">
+                            <p>Vous avez déjà un compte ? <a href="#" onclick="showPage('login-page')" style="color: var(--primary); text-decoration: none; font-weight: 500;">Se connecter</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Vehicle Details Page -->
+    <div id="vehicle-details-page" class="page">
+        <section class="section">
+            <div class="container">
+                <button class="btn btn-outline" onclick="showPage('vehicles-page')" style="margin-bottom: 40px;">
+                    <i class="fas fa-arrow-left"></i> Retour à la flotte
+                </button>
+                
+                <div id="vehicle-detail-content">
+                    <!-- Les détails du véhicule seront chargés ici dynamiquement -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>DriveEase</h3>
+                    <p style="margin-top: 25px; color: var(--secondary-text);">Location de véhicules premium avec un service exceptionnel. Vivez la différence avec DriveEase.</p>
+                    <div class="footer-social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home-page')"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="#" onclick="showPage('vehicles-page')"><i class="fas fa-chevron-right"></i> Véhicules</a></li>
+                        <li><a href="#" onclick="showPage('pricing-page')"><i class="fas fa-chevron-right"></i> Tarifs</a></li>
+                        <li><a href="#" onclick="showPage('about-page')"><i class="fas fa-chevron-right"></i> À propos</a></li>
+                        <li><a href="#" onclick="showPage('contact-page')"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contactez-nous</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Avenue des Cocotiers, Yaoundé, Cameroun</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+237 672 36 36 88</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>japhetoyie@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p style="color: var(--secondary-text); margin-top: 25px; margin-bottom: 20px;">Abonnez-vous à notre newsletter pour des offres spéciales et des mises à jour</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" placeholder="Votre email" style="padding: 12px; width: 100%; background: var(--darker); border: 1px solid var(--border); border-radius: var(--rounded-sm); color: var(--text);">
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 DriveEase. Tous droits réservés. | <a href="#" style="color: var(--secondary-text); text-decoration: none;">Politique de confidentialité</a> | <a href="#" style="color: var(--secondary-text); text-decoration: none;">Conditions d'utilisation</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
