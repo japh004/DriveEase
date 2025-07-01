@@ -8,11 +8,11 @@
 
 # Equipe
 
-Frederic Ela (Chef)
-Japhet Oyie
-Saha Owen
-Torres Nguepi 
-Arthur Adama
+-Frederic Ela (Chef)
+-Japhet Oyie
+-Saha Owen
+-Torres Nguepi 
+-Arthur Adama
 
 ---
 
