@@ -6,6 +6,16 @@
 
 ---
 
+# Equipe
+
+Frederic Ela (Chef)
+Japhet Oyie
+Saha Owen
+Torres Nguepi 
+Arthur Adama
+
+---
+
 ## 🚀 Fonctionnalités principales
 
 - 🚗 **Flotte premium** : Voitures de sport, berlines de luxe et SUV haut de gamme
